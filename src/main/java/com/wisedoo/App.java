@@ -1,4 +1,4 @@
-package com.wisedopmo;
+package com.wisedoo;
 
 /**
  * Hello world!

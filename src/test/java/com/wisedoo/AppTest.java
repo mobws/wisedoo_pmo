@@ -1,4 +1,4 @@
-package com.wisedopmo;
+package com.wisedoo;
 
 import static org.junit.Assert.assertTrue;
 
