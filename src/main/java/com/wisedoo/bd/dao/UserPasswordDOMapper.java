@@ -1,6 +1,6 @@
-package com.wisedoo.project.dao.bd;
+package com.wisedoo.bd.dao;
 
-import com.wisedoo.project.dataobject.bd.UserPasswordDO;
+import com.wisedoo.bd.dataobject.UserPasswordDO;
 
 public interface UserPasswordDOMapper {
     /**

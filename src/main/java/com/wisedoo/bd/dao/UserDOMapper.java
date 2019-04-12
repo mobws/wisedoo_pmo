@@ -1,6 +1,6 @@
-package com.wisedoo.project.dao.bd;
+package com.wisedoo.bd.dao;
 
-import com.wisedoo.project.dataobject.bd.UserDO;
+import com.wisedoo.bd.dataobject.UserDO;
 
 public interface UserDOMapper {
     /**

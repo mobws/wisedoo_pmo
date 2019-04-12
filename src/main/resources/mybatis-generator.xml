@@ -19,7 +19,7 @@
         </javaTypeResolver>
 
         <!-- 实体类(DataObject)生成的位置 -->
-        <javaModelGenerator targetPackage="com.wisedoo.project.dataobject.bd" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.wisedoo.bd.dataobject" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -30,7 +30,7 @@
         </sqlMapGenerator>
 
         <!-- Mapper 接口文件的位置 -->
-        <javaClientGenerator targetPackage="com.wisedoo.project.dao.bd" targetProject="src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.wisedoo.bd.dao" targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -38,6 +38,7 @@
         <!--<table tableName="表名" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--enableUpdateByExample="false"/>-->
         <table tableName="bd_user" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+
         <table tableName="bd_user_password" domainObjectName="UserPasswordDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
 
 
