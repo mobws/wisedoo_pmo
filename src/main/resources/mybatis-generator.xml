@@ -37,11 +37,7 @@
         <!-- 相关表的配置 -->
         <!--<table tableName="表名" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--enableUpdateByExample="false"/>-->
-        <table tableName="bd_user" domainObjectName="UserDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
-
-        <table tableName="bd_user_password" domainObjectName="UserPasswordDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
-
-
+        <table tableName="bd_corp" domainObjectName="CorpDO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
 
     </context>
 </generatorConfiguration>

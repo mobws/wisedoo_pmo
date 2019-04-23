@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisedoo.bd.dao.CorpDOMapper">
+
+  <resultMap id="BaseResultMap" type="com.wisedoo.bd.dataobject.CorpDO">
+    <id column="pk_corp" jdbcType="VARCHAR" property="pkCorp" />
+    <result column="corp_code" jdbcType="VARCHAR" property="corpCode" />
+    <result column="corp_name" jdbcType="VARCHAR" property="corpName" />
+    <result column="fathercorp" jdbcType="VARCHAR" property="fathercorp" />
+    <result column="corp_type" jdbcType="VARCHAR" property="corpType" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="vsection" jdbcType="VARCHAR" property="vsection" />
+    <result column="saleaddr" jdbcType="VARCHAR" property="saleaddr" />
+    <result column="postaddr" jdbcType="VARCHAR" property="postaddr" />
+    <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="linkman1" jdbcType="VARCHAR" property="linkman1" />
+    <result column="linkman2" jdbcType="VARCHAR" property="linkman2" />
+    <result column="linkman3" jdbcType="VARCHAR" property="linkman3" />
+    <result column="phone1" jdbcType="VARCHAR" property="phone1" />
+    <result column="phone2" jdbcType="VARCHAR" property="phone2" />
+    <result column="phone3" jdbcType="VARCHAR" property="phone3" />
+    <result column="email1" jdbcType="VARCHAR" property="email1" />
+    <result column="email2" jdbcType="VARCHAR" property="email2" />
+    <result column="email3" jdbcType="VARCHAR" property="email3" />
+    <result column="legalbodycode" jdbcType="VARCHAR" property="legalbodycode" />
+    <result column="pk_industry" jdbcType="VARCHAR" property="pkIndustry" />
+    <result column="begindate" jdbcType="CHAR" property="begindate" />
+    <result column="enddate" jdbcType="CHAR" property="enddate" />
+    <result column="sealeddate" jdbcType="CHAR" property="sealeddate" />
+    <result column="isseal" jdbcType="BIT" property="isseal" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="creationtime" jdbcType="TIMESTAMP" property="creationtime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modifiedtime" jdbcType="TIMESTAMP" property="modifiedtime" />
+    <result column="ts" jdbcType="TIMESTAMP" property="ts" />
+    <result column="dr" jdbcType="BIT" property="dr" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    pk_corp, corp_code, corp_name, fathercorp, corp_type, country, region, province, 
+    city, vsection, saleaddr, postaddr, zipcode, url, linkman1, linkman2, linkman3, phone1, 
+    phone2, phone3, email1, email2, email3, legalbodycode, pk_industry, begindate, enddate, 
+    sealeddate, isseal, memo, creator, creationtime, modifier, modifiedtime, ts, dr
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bd_corp
+    where pk_corp = #{pkCorp,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bd_corp
+    where pk_corp = #{pkCorp,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.wisedoo.bd.dataobject.CorpDO">
+    <selectKey keyProperty="pk_corp" resultType="string" order="BEFORE">
+      select replace(uuid(), '-', '') as id from dual
+    </selectKey>
+    insert into bd_corp (pk_corp, corp_code, corp_name,
+      fathercorp, corp_type, country, 
+      region, province, city, 
+      vsection, saleaddr, postaddr, 
+      zipcode, url, linkman1, 
+      linkman2, linkman3, phone1, 
+      phone2, phone3, email1, 
+      email2, email3, legalbodycode, 
+      pk_industry, begindate, enddate, 
+      sealeddate, isseal, memo, 
+      creator, creationtime, modifier, 
+      modifiedtime, ts, dr
+      )
+    values (#{pk_corp,jdbcType=VARCHAR}, #{corpCode,jdbcType=VARCHAR}, #{corpName,jdbcType=VARCHAR},
+      #{fathercorp,jdbcType=VARCHAR}, #{corpType,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{vsection,jdbcType=VARCHAR}, #{saleaddr,jdbcType=VARCHAR}, #{postaddr,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{linkman1,jdbcType=VARCHAR}, 
+      #{linkman2,jdbcType=VARCHAR}, #{linkman3,jdbcType=VARCHAR}, #{phone1,jdbcType=VARCHAR}, 
+      #{phone2,jdbcType=VARCHAR}, #{phone3,jdbcType=VARCHAR}, #{email1,jdbcType=VARCHAR}, 
+      #{email2,jdbcType=VARCHAR}, #{email3,jdbcType=VARCHAR}, #{legalbodycode,jdbcType=VARCHAR}, 
+      #{pkIndustry,jdbcType=VARCHAR}, #{begindate,jdbcType=CHAR}, #{enddate,jdbcType=CHAR}, 
+      #{sealeddate,jdbcType=CHAR}, #{isseal,jdbcType=BIT}, #{memo,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{creationtime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifiedtime,jdbcType=TIMESTAMP}, #{ts,jdbcType=TIMESTAMP}, #{dr,jdbcType=BIT}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.wisedoo.bd.dataobject.CorpDO">
+    <selectKey keyProperty="pk_corp" resultType="string" order="BEFORE">
+      select replace(uuid(), '-', '') as id from dual
+    </selectKey>
+    insert into bd_corp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkCorp != null">
+        pk_corp,
+      </if>
+      <if test="corpCode != null">
+        corp_code,
+      </if>
+      <if test="corpName != null">
+        corp_name,
+      </if>
+      <if test="fathercorp != null">
+        fathercorp,
+      </if>
+      <if test="corpType != null">
+        corp_type,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="vsection != null">
+        vsection,
+      </if>
+      <if test="saleaddr != null">
+        saleaddr,
+      </if>
+      <if test="postaddr != null">
+        postaddr,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="linkman1 != null">
+        linkman1,
+      </if>
+      <if test="linkman2 != null">
+        linkman2,
+      </if>
+      <if test="linkman3 != null">
+        linkman3,
+      </if>
+      <if test="phone1 != null">
+        phone1,
+      </if>
+      <if test="phone2 != null">
+        phone2,
+      </if>
+      <if test="phone3 != null">
+        phone3,
+      </if>
+      <if test="email1 != null">
+        email1,
+      </if>
+      <if test="email2 != null">
+        email2,
+      </if>
+      <if test="email3 != null">
+        email3,
+      </if>
+      <if test="legalbodycode != null">
+        legalbodycode,
+      </if>
+      <if test="pkIndustry != null">
+        pk_industry,
+      </if>
+      <if test="begindate != null">
+        begindate,
+      </if>
+      <if test="enddate != null">
+        enddate,
+      </if>
+      <if test="sealeddate != null">
+        sealeddate,
+      </if>
+      <if test="isseal != null">
+        isseal,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="creationtime != null">
+        creationtime,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifiedtime != null">
+        modifiedtime,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="dr != null">
+        dr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkCorp != null">
+        #{pk_corp,jdbcType=VARCHAR},
+      </if>
+      <if test="corpCode != null">
+        #{corpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null">
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="fathercorp != null">
+        #{fathercorp,jdbcType=VARCHAR},
+      </if>
+      <if test="corpType != null">
+        #{corpType,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="vsection != null">
+        #{vsection,jdbcType=VARCHAR},
+      </if>
+      <if test="saleaddr != null">
+        #{saleaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="postaddr != null">
+        #{postaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman1 != null">
+        #{linkman1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman2 != null">
+        #{linkman2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman3 != null">
+        #{linkman3,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null">
+        #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null">
+        #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null">
+        #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="email2 != null">
+        #{email2,jdbcType=VARCHAR},
+      </if>
+      <if test="email3 != null">
+        #{email3,jdbcType=VARCHAR},
+      </if>
+      <if test="legalbodycode != null">
+        #{legalbodycode,jdbcType=VARCHAR},
+      </if>
+      <if test="pkIndustry != null">
+        #{pkIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=CHAR},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=CHAR},
+      </if>
+      <if test="sealeddate != null">
+        #{sealeddate,jdbcType=CHAR},
+      </if>
+      <if test="isseal != null">
+        #{isseal,jdbcType=BIT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creationtime != null">
+        #{creationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null">
+        #{modifiedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dr != null">
+        #{dr,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.wisedoo.bd.dataobject.CorpDO">
+    update bd_corp
+    <set>
+      <if test="corpCode != null">
+        corp_code = #{corpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null">
+        corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="fathercorp != null">
+        fathercorp = #{fathercorp,jdbcType=VARCHAR},
+      </if>
+      <if test="corpType != null">
+        corp_type = #{corpType,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="vsection != null">
+        vsection = #{vsection,jdbcType=VARCHAR},
+      </if>
+      <if test="saleaddr != null">
+        saleaddr = #{saleaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="postaddr != null">
+        postaddr = #{postaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman1 != null">
+        linkman1 = #{linkman1,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman2 != null">
+        linkman2 = #{linkman2,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman3 != null">
+        linkman3 = #{linkman3,jdbcType=VARCHAR},
+      </if>
+      <if test="phone1 != null">
+        phone1 = #{phone1,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null">
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null">
+        phone3 = #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null">
+        email1 = #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="email2 != null">
+        email2 = #{email2,jdbcType=VARCHAR},
+      </if>
+      <if test="email3 != null">
+        email3 = #{email3,jdbcType=VARCHAR},
+      </if>
+      <if test="legalbodycode != null">
+        legalbodycode = #{legalbodycode,jdbcType=VARCHAR},
+      </if>
+      <if test="pkIndustry != null">
+        pk_industry = #{pkIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        begindate = #{begindate,jdbcType=CHAR},
+      </if>
+      <if test="enddate != null">
+        enddate = #{enddate,jdbcType=CHAR},
+      </if>
+      <if test="sealeddate != null">
+        sealeddate = #{sealeddate,jdbcType=CHAR},
+      </if>
+      <if test="isseal != null">
+        isseal = #{isseal,jdbcType=BIT},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creationtime != null">
+        creationtime = #{creationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedtime != null">
+        modifiedtime = #{modifiedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dr != null">
+        dr = #{dr,jdbcType=BIT},
+      </if>
+    </set>
+    where pk_corp = #{pkCorp,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.wisedoo.bd.dataobject.CorpDO">
+    update bd_corp
+    set corp_code = #{corpCode,jdbcType=VARCHAR},
+      corp_name = #{corpName,jdbcType=VARCHAR},
+      fathercorp = #{fathercorp,jdbcType=VARCHAR},
+      corp_type = #{corpType,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      vsection = #{vsection,jdbcType=VARCHAR},
+      saleaddr = #{saleaddr,jdbcType=VARCHAR},
+      postaddr = #{postaddr,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      linkman1 = #{linkman1,jdbcType=VARCHAR},
+      linkman2 = #{linkman2,jdbcType=VARCHAR},
+      linkman3 = #{linkman3,jdbcType=VARCHAR},
+      phone1 = #{phone1,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      email1 = #{email1,jdbcType=VARCHAR},
+      email2 = #{email2,jdbcType=VARCHAR},
+      email3 = #{email3,jdbcType=VARCHAR},
+      legalbodycode = #{legalbodycode,jdbcType=VARCHAR},
+      pk_industry = #{pkIndustry,jdbcType=VARCHAR},
+      begindate = #{begindate,jdbcType=CHAR},
+      enddate = #{enddate,jdbcType=CHAR},
+      sealeddate = #{sealeddate,jdbcType=CHAR},
+      isseal = #{isseal,jdbcType=BIT},
+      memo = #{memo,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      creationtime = #{creationtime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modifiedtime = #{modifiedtime,jdbcType=TIMESTAMP},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      dr = #{dr,jdbcType=BIT}
+    where pk_corp = #{pkCorp,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
