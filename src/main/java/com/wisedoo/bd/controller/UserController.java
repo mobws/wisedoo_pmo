@@ -1,5 +1,6 @@
 package com.wisedoo.bd.controller;
 
+import com.wisedoo.base.controller.BaseController;
 import com.wisedoo.base.response.CommonReturnType;
 
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/user")
 public class UserController {
 
-    public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";
 
-    @RequestMapping(value = "/getAllUser", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/getAllUser", method = {RequestMethod.POST}, consumes = {BaseController.CONTENT_TYPE_FORMED})
     @ResponseBody
     public CommonReturnType getAllUser(){
 
